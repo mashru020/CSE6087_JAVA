@@ -7,25 +7,39 @@ package goatprice;
 
 /**
  *
- * @author student
+ * @author mashrur
  */
 public class MyGoat {
     private double weight;
     private int age;
-     double max = 0;
+    double max = 0;
     
-    public void setWeight (double weight){ this.weight = weight;}
-    public void setAge (int age) {this.age = age;}
-    
-    public double price(double c, double d) {
-        double p = Math.pow(weight, c) + (d * age);
-        if (p > max) {
-            max = p;
-        }
-        return p;
+    public MyGoat(){
+        weight=0;
+        age=0;
+    }
+    public MyGoat(double w, int a) {
+        weight = w;
+        age=a;
     }
     
-    public void max() {
-       System.out.println("Maximum Price :" + max );
-    } 
+    public double Price(double c, double d ){
+        return Math.pow(weight, c) + (d * age);
+    }
+    
+    
+    public static int myfun (MyGoat []g, double []c, double []d){
+        double x1, x = g[0].Price(c[0], d[0]);
+        int idx =0;
+        
+        for( int i=1; i<g.length; i++){
+            x1= g[i].Price(c[i], d[i]);
+            if(x1> x) {
+                x = x1;
+                idx = i;
+            }
+        }
+        return idx;
+    }
+
 }
